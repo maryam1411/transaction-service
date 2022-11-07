@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "app.kafka.producer.key-serializer",
+      "type": "java.lang.String",
+      "description": "Description for app.kafka.producer.key-serializer."
+  }
+] }
