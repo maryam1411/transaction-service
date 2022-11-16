@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/transactions")
@@ -34,10 +35,10 @@ public class TransactionController {
         }
     }
 
-    @GetMapping({"/userId"})
+    @GetMapping("/{id}")
     @ApiOperation(value = "Get user transaction information", response = Iterable.class)
-    public TransactionModel getTransaction(@PathVariable String userId) {
-        return transactionHandler.getTransaction(userId);
+    public Optional<TransactionModel> getTransaction(@PathVariable String id) {
+        return transactionHandler.getTransaction(id);
 
     }
 }

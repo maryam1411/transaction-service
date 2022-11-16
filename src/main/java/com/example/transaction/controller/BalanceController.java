@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/balances")
 @Api(value = "Get balance of the user")
@@ -22,10 +24,11 @@ public class BalanceController {
         this.transactionHandler = transactionHandler;
     }
 
-    @GetMapping("{/userId}")
+
+    @GetMapping("/{userName}")
     @ApiOperation(value = "Get user balance", response = Iterable.class)
-    public BalanceModel getBalance(@PathVariable String userId) {
-        return transactionHandler.getBalance(userId);
+    public BalanceModel getBalance(@PathVariable String userName) {
+        return transactionHandler.getBalance(userName);
     }
 
 }

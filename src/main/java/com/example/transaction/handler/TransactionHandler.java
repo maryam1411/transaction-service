@@ -9,6 +9,8 @@ import com.example.transaction.transformer.TransactionTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 @Service
@@ -28,16 +30,13 @@ public class TransactionHandler {
 
     }
 
-    public BalanceModel getBalance(String userId) {
-        Transaction transaction = transactionService.calculateBalance(userId);
-        return BalanceModel
-                .builder()
-                .balance(transaction.getAmount())
-                .build();
+    public BalanceModel getBalance(String userName) {
+        Transaction transaction = transactionService.calculateBalance(userName);
+        return BalanceModel.builder().balance(transaction.getAmount()).build();
     }
 
-    public TransactionModel getTransaction(String userId) {
-        Transaction transaction = transactionService.getTransaction(userId);
-        return transactionTransformer.toModel(transaction);
+    public Optional<TransactionModel> getTransaction(String transactionId) {
+        Optional<Transaction> transaction = transactionService.getTransaction(UUID.fromString(transactionId));
+        return transaction.map(transactionTransformer::toModel);
     }
 }

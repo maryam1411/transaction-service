@@ -40,6 +40,7 @@ public class TransactionTransformer implements Transformer<TransactionModel, Tra
                     .description(entity.getDescription())
                     .creditAccount(entity.getCreditAccount())
                     .transactionType(entity.getTransactionType())
+                    .userName(entity.getUserName())
                     .build();
     }
 

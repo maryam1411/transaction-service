@@ -43,7 +43,7 @@ public class TransactionServiceTest {
     @Test
     void getTransactionInDatabase() {
         // we can mock data and then compare don't hit the actual database
-        transactionService.getTransaction("d64e7886-c34f-4623-c016-5006230b1eb3");
+        transactionService.getTransaction(UUID.fromString("d64e7886-c34f-4623-c016-5006230b1eb3"));
 
     }
 }

@@ -3,15 +3,16 @@ package com.example.transaction.service.transaction;
 import com.example.transaction.domain.Transaction;
 import com.example.transaction.enums.NotificationType;
 import com.example.transaction.exception.InvalidUserIdException;
-import com.example.transaction.service.account.AccountModel;
 import com.example.transaction.repository.TransactionRepository;
+import com.example.transaction.service.account.AccountModel;
 import com.example.transaction.service.account.AccountService;
 import com.example.transaction.service.notification.NotificationEvent;
 import com.example.transaction.service.notification.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 
@@ -38,13 +39,13 @@ public class TransactionServiceImpl implements TransactionService {
 
 
     @Override
-    public Transaction calculateBalance(String userId) {
-        return transactionRepository.getTransaction(userId);
+    public Transaction calculateBalance(String userName) {
+        return transactionRepository.findByUserName(userName);
     }
 
     @Override
-    public Transaction getTransaction(String userId) {
-        return transactionRepository.getTransaction(userId);
+    public Optional<Transaction> getTransaction(UUID transactionId) {
+        return transactionRepository.findById(transactionId);
     }
 
     private NotificationEvent getNotificationEvent(String userName) throws InvalidUserIdException {

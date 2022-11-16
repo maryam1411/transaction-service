@@ -5,6 +5,7 @@ import com.example.transaction.model.LoginModel;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,7 +30,7 @@ public class LoginController {
     @ApiOperation(value = "Login user with valid credentials", response = Iterable.class)
     public ResponseEntity login(@Valid @RequestBody LoginModel loginModel) {
         try {
-            return loginHandler.login(loginModel);
+           return loginHandler.login(loginModel);
         } catch (Exception ex) {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
