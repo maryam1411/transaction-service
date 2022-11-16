@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,12 +25,12 @@ public class TransactionController {
 
     @PostMapping
     @ApiOperation(value = "Save user transaction information", response = Iterable.class)
-    public HttpStatus performTransaction(@Valid @RequestBody TransactionModel transactionModel) {
+    public ResponseEntity<String> performTransaction(@Valid @RequestBody TransactionModel transactionModel) {
         try {
             transactionHandler.performTransaction(transactionModel);
-            return HttpStatus.OK;
+            return new ResponseEntity<>("Transaction Completed", HttpStatus.OK);
         } catch (Exception e) {
-            return HttpStatus.BAD_REQUEST;
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 

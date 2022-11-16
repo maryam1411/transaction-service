@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 
 @Getter
@@ -15,6 +16,7 @@ import javax.validation.constraints.NotEmpty;
 public class TransactionModel {
     @NotEmpty
     private String userName;
+    @NotNull
     private int amount;
     @NotEmpty
     private String purpose;
@@ -23,5 +25,6 @@ public class TransactionModel {
     @NotEmpty
     @NotBlank(message = "Credit account field is mandatory")
     private String creditAccount;
+    @NotNull
     private TransactionType transactionType;
 }

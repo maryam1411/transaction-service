@@ -30,7 +30,6 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    @Transactional
     public void performTransaction(Transaction transaction) throws InvalidUserIdException, ExecutionException, InterruptedException {
         NotificationEvent notificationEvent = getNotificationEvent(transaction.getUserName());
         transactionRepository.save(transaction);
@@ -39,7 +38,6 @@ public class TransactionServiceImpl implements TransactionService {
 
 
     @Override
-    @Transactional
     public Transaction calculateBalance(String userId) {
         return transactionRepository.getTransaction(userId);
     }
