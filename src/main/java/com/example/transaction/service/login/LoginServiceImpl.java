@@ -31,9 +31,9 @@ public class LoginServiceImpl implements LoginService {
     }
 
     public ResponseEntity login(LoginModel loginModel) throws Exception {
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(loginModel.getUserName().toLowerCase());
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(loginModel.getUserName());
         final String token = jwtTokenUtil.generateToken(userDetails);
-        AccountModel registeredAccount = accountService.getAccount(loginModel.getUserName().toLowerCase());
+        AccountModel registeredAccount = accountService.getAccount(loginModel.getUserName());
         if (loginModel.getUserName().equalsIgnoreCase(registeredAccount.getUserName()) && encoder.matches(loginModel.getPassword(),
                 registeredAccount.getPassword())) {
             return ResponseEntity.ok(new AuthenticationResponse(loginModel.getUserName(), true, token));

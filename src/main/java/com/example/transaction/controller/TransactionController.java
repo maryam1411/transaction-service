@@ -29,7 +29,7 @@ public class TransactionController {
     public ResponseEntity<String> performTransaction(@Valid @RequestBody TransactionModel transactionModel) {
         try {
             transactionHandler.performTransaction(transactionModel);
-            return new ResponseEntity<>("Transaction Completed", HttpStatus.OK);
+            return new ResponseEntity<>("Transaction completed Successfully", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
